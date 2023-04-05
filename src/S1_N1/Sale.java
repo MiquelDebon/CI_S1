@@ -7,7 +7,7 @@ public class Sale {
     private int totalPrice;
 
     public Sale(){
-        this.productList = new ArrayList<>();
+        this.productList = new ArrayList<Product>();
         this.totalPrice = 0;
     }
 
@@ -19,6 +19,10 @@ public class Sale {
         this.productList = productList;
     }
 
+    public void addProduct(Product newProduct){
+        this.productList.add(newProduct);
+    }
+
     public int getTotalPrice() {
         return totalPrice;
     }
@@ -27,16 +31,14 @@ public class Sale {
         this.totalPrice = totalPrice;
     }
 
-    public Integer calcularTotal()throws EmptySaleException{
+    public void calcularTotal()throws EmptySaleException{
         //RunTimeException extended from OIException
-        int total=0;
-        if(this.getProductList().size()==0){
-            throw new EmptySaleException("Epa Sales is empty");
+        if(this.productList.size() == 0){
+            throw new EmptySaleException("To sell you need to add products first");
         }else{
             for(Product i:productList){
-                total+=i.getPrice();
+                this.totalPrice += i.getPrice();
             }
         }
-        return total;
     }
 }
