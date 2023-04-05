@@ -1,3 +1,5 @@
+package S1_N1;
+
 public class Product {
     private String name;
     private int price;

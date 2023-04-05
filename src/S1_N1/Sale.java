@@ -1,3 +1,5 @@
+package S1_N1;
+
 import java.util.ArrayList;
 
 public class Sale {
