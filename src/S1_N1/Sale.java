@@ -12,7 +12,7 @@ public class Sale {
     }
 
     public ArrayList<Product> getProductList() {
-        return productList;
+        return this.productList;
     }
 
     public void setProductList(ArrayList<Product> productList) {
@@ -24,7 +24,7 @@ public class Sale {
     }
 
     public int getTotalPrice() {
-        return totalPrice;
+        return this.totalPrice;
     }
 
     public void setTotalPrice(int totalPrice) {

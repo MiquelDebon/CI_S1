@@ -161,7 +161,7 @@ public class Input {
 
 
     //Advanced Integer
-    static int inputReturnIntWhileBetweenRange(int valorInferiorInclos , int valorSuperiorInclos, String message) {
+    public static int inputReturnIntWhileBetweenRange(int valorInferiorInclos , int valorSuperiorInclos, String message) {
         int numero = 0;
         rightInput = false;
 
