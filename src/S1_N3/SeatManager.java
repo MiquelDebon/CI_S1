@@ -48,7 +48,7 @@ public class SeatManager {
     }
 
     public ArrayList<Seat> searchIndexSeatByName(String name) throws NullPointerException{
-        ArrayList<Seat> seatByPerson = null;
+        ArrayList<Seat> seatByPerson = new ArrayList<Seat>();
         for(int i=0; i<this.seatList.size(); i++){
             if(this.seatList.get(i).getName().equalsIgnoreCase(name)){
                 seatByPerson.add(this.seatList.get(i));

@@ -7,10 +7,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Cinema {
-    static Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
     private int totalRows;
     private int totalSeatXRow;
     private SeatManager seatManager;
+    private final String NO_CLIENT_YET = "There is no booking done yet";
 
 
     public Cinema(){
@@ -20,9 +21,9 @@ public class Cinema {
 
 
     public void askInitialData(){
-        System.out.println("Welcome to the Java's Cinema Paradise");
-        this.totalRows = Input.readInteger("Introduce el numero de filas ✏️: ");
-        this.totalSeatXRow = Input.readInteger("Introduce el numero de butacas por fila ✏️: ");
+        System.out.println("👋Welcome to the Java's Cinema Paradise🎦");
+        this.totalRows = Input.readInteger("    Introduce el numero de filas ✏️: ");
+        this.totalSeatXRow = Input.readInteger("    Introduce el numero de butacas por fila ✏️: ");
     }
 
     public void run(){
@@ -62,32 +63,31 @@ public class Cinema {
 
     public void showAllBookedSeats(){
         System.out.println("☑️ Option 1 - Show all the seats booked");
-        if(this.seatManager.getSeatList().size() == 0){
-            System.out.println("There is any seat booked");
-        }else{
+        if(this.seatManager.getSeatList().size() > 0){
             for(Seat seat : this.seatManager.getSeatList()){
                 System.out.println(seat);
             }
+        }else{
+            System.out.println(NO_CLIENT_YET);
         }
         System.out.println("✅ Option 1 - DONE");
-
     }
 
     public void showSeatByPerson(){
         String name = "";
-        ArrayList<Seat> listOfSeat = null;
+        ArrayList<Seat> listOfSeat ;
         System.out.println("☑️ Option 2 - Show the seats by one person");
-        name = Input.readString("What is your name? ✏️: ");
         try{
-            listOfSeat = this.seatManager.searchIndexSeatByName(name);
-            if(listOfSeat.size() == 0 ){
-                System.out.println("We don't have any reservation with this name");
+            if(this.seatManager.getSeatList().size() == 0 ){
+                System.out.println(NO_CLIENT_YET);
             }else{
+                name = Input.readString("What is your name? ✏️: ");
+                listOfSeat = this.seatManager.searchIndexSeatByName(name);
+
                 for(Seat seat : listOfSeat){
                     System.out.println(String.format("Your Seat is at %d row, %d seat",
                             seat.getRow(), seat.getSeat()));
                 }
-
             }
         }catch (NullPointerException npe){
             System.out.println("There is no Seat at this name");
@@ -120,24 +120,33 @@ public class Cinema {
     }
     public void cancelBooking(){
         int index = -1;
-        try {
-            int row = this.addRow();
-            int seat = this.addSeat();
-            this.seatManager.deleteSeat(row, seat);
-        } catch (ExceptionWrongRow e) {
-            System.out.println("Wrong row");
-        }catch (ExceptionWrongSeat e) {
-            System.out.println("Wrong seat");
-        }catch(ExceptionEmptySeat e){
-            System.out.println("Empty seat");
+        if(this.seatManager.getSeatList().size() > 0){
+            try {
+                int row = this.addRow();
+                int seat = this.addSeat();
+                this.seatManager.deleteSeat(row, seat);
+            } catch (ExceptionWrongRow e) {
+                System.out.println("Wrong row");
+            }catch (ExceptionWrongSeat e) {
+                System.out.println("Wrong seat");
+            }catch(ExceptionEmptySeat e){
+                System.out.println("Empty seat");
+            }
+        }else{
+            System.out.println(NO_CLIENT_YET);
         }
+
     }
     public void cancelBookingByPerson(){
-        String name = Input.readString("What is your name? ✏️: ");
-        try{
-            this.seatManager.searchIndexSeatByName(name);
-        }catch (NullPointerException npe){
-            System.out.println("There is no seat book with this name");
+        if(this.seatManager.getSeatList().size() > 0){
+            String name = Input.readString("What is your name? ✏️: ");
+            try{
+                this.seatManager.searchIndexSeatByName(name);
+            }catch (NullPointerException npe){
+                System.out.println("There is no seat book with this name");
+            }
+        }else{
+            System.out.println(NO_CLIENT_YET);
         }
     }
 
@@ -155,7 +164,7 @@ public class Cinema {
         int row = Input.readInteger(String.format("Which ROW do you want (1-%d)? ✏️: ", this.totalRows));
 //        row = Input.inputReturnIntWhileBetweenRange(1, this.totalRows,
 //                String.format("Which ROW do you want (1-%d)? ✏️: ", this.totalRows));
-        if(row>1 && row <this.totalRows){
+        if(row>=1 && row <=this.totalRows){
             return row;
         }else{
             throw new ExceptionWrongRow();
@@ -164,7 +173,7 @@ public class Cinema {
 
     public int addSeat() throws ExceptionWrongSeat{
         int seat = Input.readInteger(String.format("Which SEAT do you want (1-%d)? ✏️: ", this.totalSeatXRow));
-        if(seat>1 && seat<this.totalRows){
+        if(seat>=1 && seat<=this.totalRows){
             return seat;
         }else{
             throw new ExceptionWrongSeat();
