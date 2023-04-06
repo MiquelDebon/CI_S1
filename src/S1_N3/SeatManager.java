@@ -20,7 +20,8 @@ public class SeatManager {
     }
     public void addSeat(Seat newSeat)  throws ExceptionSeatInUse {
         boolean inUse = false;
-        if(searchSeat(newSeat.getRow(), newSeat.getSeat()) != -1){
+
+        if(this.seatList.size() == 0 || (searchSeat(newSeat.getRow(), newSeat.getSeat()) != -1)){
             this.seatList.add(newSeat);
         }else{
             throw new ExceptionSeatInUse("This seat is already in use");
@@ -46,5 +47,14 @@ public class SeatManager {
         return index;
     }
 
+    public ArrayList<Seat> searchIndexSeatByName(String name) throws NullPointerException{
+        ArrayList<Seat> seatByPerson = null;
+        for(int i=0; i<this.seatList.size(); i++){
+            if(this.seatList.get(i).getName().equalsIgnoreCase(name)){
+                seatByPerson.add(this.seatList.get(i));
+            }
+        }
+        return seatByPerson;
+    }
 
 }
