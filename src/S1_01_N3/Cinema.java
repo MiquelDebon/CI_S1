@@ -1,9 +1,8 @@
-package S1_N3;
+package S1_01_N3;
 
-import S1_N2.Input;
+import S1_01_N2.Input;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Cinema {

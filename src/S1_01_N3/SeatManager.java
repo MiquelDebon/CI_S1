@@ -1,6 +1,5 @@
-package S1_N3;
+package S1_01_N3;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class SeatManager {

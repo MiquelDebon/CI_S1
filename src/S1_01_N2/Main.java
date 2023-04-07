@@ -1,6 +1,4 @@
-package S1_N2;
-
-import java.util.Scanner;
+package S1_01_N2;
 
 public class Main {
     public static void main(String[] args) {

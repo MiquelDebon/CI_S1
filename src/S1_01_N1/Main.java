@@ -1,4 +1,4 @@
-package S1_N1;
+package S1_01_N1;
 
 public class Main {
     public static void main(String[] args) {
