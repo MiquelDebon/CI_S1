@@ -134,7 +134,6 @@ public class Cinema {
         }else{
             System.out.println(NO_CLIENT_YET);
         }
-
     }
     public void cancelBookingByPerson(){
         if(this.seatManager.getSeatList().size() > 0){
