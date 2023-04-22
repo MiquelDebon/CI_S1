@@ -1,4 +1,4 @@
-package S1_01_N3;
+package S1_02_N3;
 
 public class ExceptionWrongRow extends Exception{
     public ExceptionWrongRow(){};

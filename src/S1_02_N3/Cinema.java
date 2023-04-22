@@ -1,6 +1,6 @@
-package S1_01_N3;
+package S1_02_N3;
 
-import S1_01_N2.Input;
+import S1_02_N2.Input;
 
 import java.util.ArrayList;
 import java.util.Scanner;

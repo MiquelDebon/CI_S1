@@ -1,4 +1,4 @@
-package S1_01_N1;
+package S1_02_N1;
 
 import java.util.ArrayList;
 
