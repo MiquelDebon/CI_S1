@@ -20,7 +20,7 @@ public class Cinema {
 
 
     public void askInitialData(){
-        System.out.println("👋Welcome to the Java's Cinema Paradise🎦");
+        System.out.println("👋Welcome to the Java's Cinema Paradise 🎦");
         this.totalRows = Input.readInteger("    Introduce el numero de filas ✏️: ");
         this.totalSeatXRow = Input.readInteger("    Introduce el numero de butacas por fila ✏️: ");
     }
@@ -107,6 +107,7 @@ public class Cinema {
                 this.seatManager.addSeat(new Seat(name, row, seat));
                 succeed = true;
             } catch (ExceptionWrongRow e) {
+                System.out.println(e.getMessage());
                 System.out.println("Wrong row");
             }catch (ExceptionWrongSeat e) {
                 System.out.println("Wrong Seat");
@@ -129,7 +130,8 @@ public class Cinema {
             }catch (ExceptionWrongSeat e) {
                 System.out.println("Wrong seat");
             }catch(ExceptionEmptySeat e){
-                System.out.println("Empty seat");
+                System.out.println(e.getMessage());
+//                System.out.println("Empty seat");
             }
         }else{
             System.out.println(NO_CLIENT_YET);

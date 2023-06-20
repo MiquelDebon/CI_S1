@@ -16,17 +16,22 @@ public class Main {
         } catch (EmptySaleException e) {
             System.out.println(e.getMessage());
         }
+        sale_1.calcularTotal_MEJORADA();
+
 
         //Add product
         sale_1.addProduct(product_1);
         sale_1.addProduct(product_2);
         sale_1.addProduct(product_3);
 
+        System.out.println("Products added");
         try {
             sale_1.calcularTotal();
         } catch (EmptySaleException e) {
             System.out.println(e.getMessage());
         }
+
+        sale_1.calcularTotal_MEJORADA();
 
         System.out.println("Total price = " + sale_1.getTotalPrice());
 

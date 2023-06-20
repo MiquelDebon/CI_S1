@@ -27,7 +27,6 @@ public class SeatManager {
         }
     }
     public void deleteSeat(int qRow, int qSeat) throws ExceptionEmptySeat{
-        boolean inUse = false;
         int index = searchSeat(qRow, qSeat);
         if(index != -1){
             this.seatList.remove(index);
@@ -35,6 +34,7 @@ public class SeatManager {
             throw new ExceptionEmptySeat("The Seat is available");
         }
     }
+
     public int searchSeat(int qRow, int qSeat){
         int index = -1;
         for(int i=0; i<this.seatList.size(); i++){
